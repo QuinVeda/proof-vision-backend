@@ -1,0 +1,7 @@
+{% load i18n %}{% autoescape off %}{% blocktrans with site_name=current_site.name %}<p> Dear {{ user }}, </p>{% endblocktrans %}
+{% block content %}{% endblock content %}
+{% blocktrans with site_name=current_site.name site_domain=current_site.domain %}
+<p> Best regards, <br>
+Team {{ site_name }} </p>
+<p> Download Proof Vision here: <a href="https://{{site_domain}}" target="_blank">https://{{site_domain}}</a> </p>
+{% endblocktrans %}{% endautoescape %}

@@ -1,0 +1,9 @@
+{% extends "account/email/base_message.txt" %}
+{% load account %}
+{% load i18n %}
+
+{% block content %}{% autoescape off %}{% blocktrans with site_name=current_site.name site_domain=current_site.domain %}Welcome to {{ site_name }}! We are thrilled to have you on board and grateful that you've chosen to join our community.
+
+Should you have any questions, concerns, or feedback, please feel free to reach out to our support team at {{ support_email }}. We're here to assist you every step of the way.
+
+Once again, welcome to {{ site_name }}! We're excited to embark on this journey with you.{% endblocktrans %}{% endautoescape %}{% endblock content %}

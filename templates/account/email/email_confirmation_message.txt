@@ -1,0 +1,11 @@
+{% extends "account/email/base_message.txt" %}
+{% load account %}
+{% load i18n %}
+
+{% block content %}{% autoescape off %}{% blocktrans with site_name=current_site.name site_domain=current_site.domain %}Thank you for signing up with {{ site_name }}! To ensure that we have the correct email address and to activate your account, please verify your email address by clicking the link below:
+
+{{ activate_url }}
+
+Once you've verified your email address, you'll be all set to access our services and enjoy all the benefits of being user of {{ site_name }}.
+
+Thank you for choosing {{ site_name }}. If you have any questions or need further assistance, please don't hesitate to contact our support team at {{ support_email }}.{% endblocktrans %}{% endautoescape %}{% endblock content %}
