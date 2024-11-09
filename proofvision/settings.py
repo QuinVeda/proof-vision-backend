@@ -45,6 +45,10 @@ env = environ.Env(
     DB_PORT=(str, "5432"),
     FRONTEND_CONFIRM_EMAIL_URL=(str, ""),
     FRONTEND_PASSWORD_RESET_URL=(str, ""),
+    AWS_ACCESS_KEY_ID=(str, ""),
+    AWS_SECRET_ACCESS_KEY=(str, ""),
+    AWS_STORAGE_BUCKET_NAME=(str, ""),
+    AWS_S3_REGION_NAME=(str, ""),
 )
 
 
@@ -73,6 +77,7 @@ DEFAULT_APPS = [
 ]
 
 THIRD_PARTY_APPS = [
+    "storages",
     "allauth",
     "allauth.account",
     "allauth.socialaccount",
@@ -273,3 +278,13 @@ ACCOUNT_USER_MODEL_USERNAME_FIELD = None
 ACCOUNT_ADAPTER = "accounts.adapter.AccountAdapter"
 FRONTEND_CONFIRM_EMAIL_URL = env("FRONTEND_CONFIRM_EMAIL_URL")
 FRONTEND_PASSWORD_RESET_URL = env("FRONTEND_PASSWORD_RESET_URL")
+
+# AWS S3 Settings
+AWS_ACCESS_KEY_ID = env("AWS_ACCESS_KEY_ID")
+AWS_SECRET_ACCESS_KEY = env("AWS_SECRET_ACCESS_KEY")
+AWS_STORAGE_BUCKET_NAME = env("AWS_STORAGE_BUCKET_NAME")
+AWS_S3_REGION_NAME = env("AWS_S3_REGION_NAME")
+AWS_S3_CUSTOM_DOMAIN = f"{AWS_STORAGE_BUCKET_NAME}.s3.amazonaws.com"
+DEFAULT_FILE_STORAGE = "storages.backends.s3boto3.S3Boto3Storage"
+MEDIA_URL = f"https://{AWS_S3_CUSTOM_DOMAIN}/media/"
+STATIC_URL = f"https://{AWS_S3_CUSTOM_DOMAIN}/static/"
