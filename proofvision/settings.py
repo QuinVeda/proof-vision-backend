@@ -95,7 +95,10 @@ THIRD_PARTY_APPS = [
     "drf_standardized_errors",
 ]
 
-LOCAL_APPS = ["accounts"]
+LOCAL_APPS = [
+    "accounts",
+    "analysis",
+]
 
 INSTALLED_APPS = DEFAULT_APPS + THIRD_PARTY_APPS + LOCAL_APPS
 

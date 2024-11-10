@@ -5,6 +5,9 @@ from collections import OrderedDict
 from django.conf import settings
 import copy
 
+from analysis.views import DetectionViewSet
+
+
 class APIRouter(DefaultRouter):
     include_root_view = settings.DEBUG
     dj_rest_urls = dj_rest_auth_urls + dj_rest_auth_registration_urls
@@ -60,3 +63,4 @@ class APIRouter(DefaultRouter):
 
 # Register your viewsets here
 router = APIRouter()
+router.register("detections", DetectionViewSet)
