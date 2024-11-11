@@ -1,6 +1,5 @@
 from dj_rest_auth.serializers import LoginSerializer, UserDetailsSerializer
 from dj_rest_auth.registration.serializers import RegisterSerializer
-from phonenumber_field.serializerfields import PhoneNumberField
 from rest_framework.validators import UniqueValidator
 from rest_framework import serializers, exceptions
 from accounts.models import User
