@@ -1,7 +1,8 @@
 from .models import Detection
 from rest_framework.serializers import ModelSerializer
 from rest_framework.exceptions import ValidationError
-from proofvision.services import AmazonLambdaService
+# from proofvision.services import AmazonLambdaService
+from proofvision.services import PredictionService
 
 
 class DetectionSerializer(ModelSerializer):
@@ -23,6 +24,7 @@ class DetectionSerializer(ModelSerializer):
     def create(self, validated_data):
         validated_data["user"] = self.context["request"].user
         instance = super().create(validated_data)
-        data = {"id": instance.id, "type": instance.type, "file": instance.file.url}
-        AmazonLambdaService().start(data)
+        results = PredictionService().predict(instance.file.url)
+        instance.results = results
+        instance.save()
         return instance
